@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width , initial-scale = 1.0">
+        <title>revising</title>
+        <link rel="stylesheet" href="style.css"/>
+        
+        
+    </head>
+    <body>
+        
+        <header class="header">
+            <h2 id="name">STUDYIT</h2>
+            <div class="quote">Todays quote</div>     
+        </header>
+
+        <main>
+            <div class="allgoals">
+                <h4> All goals</h4>
+
+                <div class="addgoal">
+                    <input type="text" placeholder="Add a new goal" id="newgoal">
+                    <input type="number" placeholder="Target(hrs/min)" id="time">
+                    <button id="submitbtn">ADD Goal</button>
+                </div>
+                <div class="goallist">
+                    <p class="helperclass">Click a goal to start its study session</p>
+                    <ul>
+                        <li class="goal-item">
+                            <span class="goal-name">Maths</span>
+                            <span class="goal-time">2 hrs</span>
+                        </li>
+
+                        <li class="goal-item">
+                            <span class="goal-name">os</span>
+                            <span class="goal-time">3 hrs</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timer">
+                <h4 id="timerheading"> Maths</h4>
+                <div class="timercontent">
+                    <div class="clock">
+                        <p id="changabletime">11:00:00 </p>
+                    </div>
+                    <button id="stop">stop</button>
+                </div>
+
+            </div>
+            
+
+            <div class="progress">
+                <h4> Overall progress</h4>
+                <div class="progress-item-list">
+                    <div class="progress-item">
+                        <p class="progress-title">Maths</p>
+                        <div class="progress-track">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p class="progress-text">1.2 / 2 hrs</p>
+                    </div>
+                    <div class="progress-item">
+                        <p class ="progress-title">os</p>
+                        <div class="progress-track">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p class="progress-text">2 / 3 hrs</p>
+                    </div>
+
+                </div>
+                <div class="analysis">
+                    <p>Total study time</p>
+                    <p id="total">4.5 hrs</p>
+                </div>
+                
+                <button id="reset">Reset day</button>
+
+            </div>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
