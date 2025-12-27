@@ -327,3 +327,8 @@ input ::placeholder{
     flex-direction: column;
     gap: 0.2rem;
 }
+.goal-item.active{
+    opacity:1;
+    border: 2px solid var(--accent);
+}
+
