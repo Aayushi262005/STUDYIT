@@ -7,12 +7,14 @@ const timerHeading=document.querySelector("#timerheading");
 const time=document.querySelector("#changabletime");
 const stopBtn=document.querySelector("#stop");
 const allSections = document.querySelectorAll(".allgoals, .progress");
-
+const beep = new Audio("beep.mp3");
+let isBeeping = false;
 let goals = [];
 let activeGoalIndex=null;
 let timer=null;
 let seconds=0;
 let remainingSeconds=0;
+
 
 
 submitBtn.addEventListener("click",()=>{
@@ -81,6 +83,15 @@ stopBtn.addEventListener("click",()=>{
         alert("Please select a goal!");
         return;
     }
+    if(isBeeping){
+        beep.pause();
+        beepCurrentTime = 0;
+        isBeeping=false;
+        stopBtn.textContent="Start";
+        toggleFocusMode(false);
+        return;
+
+    }
     if(timer==null){
         startTimer();
         stopBtn.textContent = "Stop";
@@ -104,16 +115,18 @@ function startTimer(){
     
     timer= setInterval(()=>{
 
-        if(remainingSeconds<=0){
+        if (remainingSeconds <= 0) {
             clearInterval(timer);
-            timer=null;
-            stopBtn.textContent = "Start";
+            timer = null;
+            remainingSeconds = 0;
+            isBeeping = true;
+            beep.play();
             return;
-            
         }
         remainingSeconds--;
+        if (remainingSeconds < 0) remainingSeconds = 0; 
         updateClock();
-
+ 
     },1000);
 }
 
