@@ -5,6 +5,8 @@ const goalList = document.querySelector(".goallist ul");
 const goalListItem = document.querySelectorAll(".goallist");
 const timerHeading=document.querySelector("#timerheading");
 const time=document.querySelector("#changabletime");
+const stopBtn=document.querySelector("#stop");
+const allSections = document.querySelectorAll(".allgoals, .progress");
 
 let goals = [];
 let activeGoalIndex=null;
@@ -74,6 +76,25 @@ function rendergoals(){
     })
 }
 
+stopBtn.addEventListener("click",()=>{
+    if(activeGoalIndex===null){
+        alert("Please select a goal!");
+        return;
+    }
+    if(timer==null){
+        startTimer();
+        stopBtn.textContent = "Stop";
+        toggleFocusMode(true);
+    }
+    else{
+        clearInterval(timer);
+        timer = null;
+        stopBtn.textContent = "Start";
+        toggleFocusMode(false);
+    }
+    
+})
+
 function startTimer(){
     if(activeGoalIndex===null){
         alert("Please select a goal!");
@@ -86,8 +107,9 @@ function startTimer(){
         if(remainingSeconds<=0){
             clearInterval(timer);
             timer=null;
+            stopBtn.textContent = "Start";
             return;
-        
+            
         }
         remainingSeconds--;
         updateClock();
@@ -102,10 +124,17 @@ function updateClock(){
     time.innerText= String(hrs).padStart(2,"0")+":"+String(mins).padStart(2,"0")+":"+String(secs).padStart(2,"0");
     
 }
-console.log();
 
 function loadGoalTime(index) {
   remainingSeconds = Number(goals[index].target);
   updateClock();
 }
+
+function toggleFocusMode(isActive){
+    allSections.forEach(section =>{
+            section.style.opacity = isActive ? "0.5" : "1";
+            section.style.pointerEvents = isActive ? "none" : "auto";
+    })
+}
+
 
