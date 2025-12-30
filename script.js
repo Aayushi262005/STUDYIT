@@ -271,7 +271,7 @@ window.addEventListener("load",()=>{
             modeIcon.src = "sun2.png";
         }
         else{
-            body.classList.add("light");
+            body.classList.remove("dark");
             modeIcon.src= "moon2.png";
         }
         renderProgress();
