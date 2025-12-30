@@ -13,7 +13,7 @@
         
         <header>
             <h2 id="name">STUDY <span>IT</span></h2>
-            <div class="quote">Todays quote</div>  
+            <div class="quote" id="daily-quote">Dreams don't work unless you do</div>  
             <button id="mode"> <img src="moon2.png" alt="mode"></button>   
         </header>
 
@@ -25,24 +25,20 @@
                     <div class="addgoal">
                         <div class="inputfield">
                             <input type="text" placeholder="Add a new goal" id="newgoal">
-                            <input type="number" placeholder="Target(hrs)" id="time">
+                            <div class="time">
+                            <input type="number" placeholder="Target(hrs)" id="hrsInput" min="0">
+                            <input type="number" placeholder="Target(min)" id="minsInput" min="0">
+                            </div>
                         </div>
                         <button id="submitbtn">ADD Goal</button>
                     </div>
                     <div class="goallist">
                         <p class="helperclass">Click a goal to start its study session</p>
                         <ul>
-                            <li class="goal-item">
-                                <span class="goal-name">Maths</span>
-                                <span class="goal-time">2 hrs</span>
-                            </li>
-
-                            <li class="goal-item">
-                                <span class="goal-name">os</span>
-                                <span class="goal-time">3 hrs</span>
-                            </li>
+                            <p class="helperclass" id="once">No goals added yet.</p>
 
                         </ul>
+                        
                     </div>
                 </div>
             </div>
@@ -63,31 +59,11 @@
                 <h4> Overall progress</h4>
                 <div class="main-progress">
                 <div class="progress-item-list">
-                    <div class="item">
-                        <div class="til">
-                            <p class="progress-title">Maths</p>
-                            <p class="progress-text">1.2 / 2 hrs</p>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill">filling</div>
-                        </div>
-                        
-                    </div>
-                    <div class="item">
-                        <div class="til">
-                        <p class ="progress-title">os</p>
-                        <p class="progress-text">2 / 3 hrs</p>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill">filling</div>
-                        </div>
-                        
-                    </div>
-
+                    <p class="helperclass" style="text-align: center; margin-top: 20px;">Your progress tracking will appear here.</p>`
                 </div>
                 <div class="analysis">
                     <p class="helperclass">Total study time</p>
-                    <p id="total">4.5 hrs</p>
+                    <p id="total">00:00:00</p>
             
                     <button id="reset">Reset day</button>
                 </div>
