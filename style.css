@@ -167,8 +167,8 @@ h4{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    padding: 20px;
+
+    justify-content: space-between;
     
 }
 
@@ -178,12 +178,13 @@ h4{
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 600;
     color: var(--text-main);
-    width: clamp(240px, 30vw, 340px);   
+    width: clamp(140px, 30vw, 340px);   
     aspect-ratio: 1 / 1;        
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: auto;
 }
 button{
     width: 95%;
@@ -403,11 +404,56 @@ input {
     align-content: center;
     align-items: center;
 }
-.goallist ul, .progress-item-list, .quote {
+.goallist, .progress-item-list, .quote {
     opacity: 0;
     transition: opacity 0.3s ease-in;
 }
 
 .loaded {
     opacity: 1 ;
+}
+@media screen and (max-width: 768px) {
+  body {
+    height: auto;
+    overflow-y: auto;
+  }
+
+  header {
+    grid-template-columns: 1fr auto;
+    height: auto;
+    padding: 10px;
+  }
+
+  .quote {
+        grid-column: 1 / span 2; 
+        width: 100%;
+        height: auto;
+        
+        order: 3;
+    }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    gap: 1.5rem; 
+  }
+
+  .allgoals, .timer, .progress {
+    width: 100% ;
+    height: auto; 
+    min-height: 450px;
+  }
+
+ 
+  .clock {
+    width: 290px;
+    height: 290px;
+    font-size: 2.5rem;
+  }
+
+  .goallist, .progress-item-list {
+    min-height: 200px;
+  }
 }

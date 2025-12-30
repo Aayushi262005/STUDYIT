@@ -70,6 +70,7 @@ function rendergoals(){
     goalList.innerHTML="";
     if (goals.length === 0) {
         goalList.innerHTML = `<p class="helperclass" style="align-item:center">No goals added yet.</p>`;
+         goalList.classList.add("loaded");
         return;
     }
     goals.forEach((goal, index) =>{
@@ -78,6 +79,7 @@ function rendergoals(){
         if(index===activeGoalIndex){
             li.classList.add("active");
         }
+        
         li.innerHTML=`
         <div class="visibletime">
             <span class="goal-name">${goal.name}</span>
@@ -298,8 +300,11 @@ window.addEventListener("load",()=>{
         
     }
     updateDailyQuote();
-    const containers = document.querySelectorAll(".goallist ul, .progress-item-list, .quote");
-    containers.forEach(el => el.classList.add("loaded"));
+    requestAnimationFrame(() => {
+        document
+          .querySelectorAll(".goallist, .progress-item-list, .quote")
+          .forEach(el => el.classList.add("loaded"));
+    });
 
 })
 async function updateDailyQuote() {
