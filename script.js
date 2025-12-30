@@ -14,7 +14,7 @@ const body=document.querySelector("body");
 const modeIcon=document.querySelector("img");
 const progressList=document.querySelector(".progress-item-list");
 const total= document.getElementById("total");
-const reset=document.querySelector("#reset")
+const reset=document.querySelector("#reset");
 
 let isBeeping = false;
 let activeGoalIndex=null;
@@ -79,17 +79,39 @@ function rendergoals(){
             li.classList.add("active");
         }
         li.innerHTML=`
+        <div class="visibletime">
             <span class="goal-name">${goal.name}</span>
-            <span class="goal-time">${formatTime(goal.target)}</span>
+            <span class="goal-time">(${formatTime(goal.target)})</span>
+            </div>
+            <div class="action-area">
+            <button class="deletebtn" title="delete goal">&times;</button>
+            </div>
         `;
-
-        li.addEventListener("click", () =>{
-            activeGoalIndex=index;
-            timerHeading.textContent=goal.name;
-            loadGoalTime(index)
+         li.addEventListener("click", () => {
+            activeGoalIndex = index;
+            timerHeading.textContent = goal.name;
+            loadGoalTime(index);
             rendergoals();
-        })
-    goalList.appendChild(li);
+        });
+
+        const deleteBtn = li.querySelector(".deletebtn");
+        deleteBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            goals.splice(index, 1);
+
+            if (activeGoalIndex === index) {
+                activeGoalIndex = null;
+                timerHeading.textContent = "Select a goal";
+            } else if (activeGoalIndex > index) {
+                activeGoalIndex--;
+            }
+
+            saveToLocal();
+            rendergoals();
+            renderProgress();
+        });
+
+        goalList.appendChild(li);
     
 
     })
@@ -168,6 +190,7 @@ function toggleFocusMode(isActive){
     allSections.forEach(section =>{
             section.style.opacity = isActive ? "0.5" : "1";
             section.style.pointerEvents = isActive ? "none" : "auto";
+
     })
 }
 
@@ -175,6 +198,7 @@ mode.addEventListener("click",()=>{
     body.classList.toggle("dark");  
     if(body.classList.contains("dark")){
         modeIcon.src="sun2.png";
+        
         localStorage.setItem("currMode","dark");
     }
     else {
@@ -262,21 +286,20 @@ window.addEventListener("load",()=>{
     updateDailyQuote();
     const saved=localStorage.getItem("studyGoal");
     const savedMode=localStorage.getItem("currMode");
-    if(saved){
-        goals=JSON.parse(saved);
-        
-        rendergoals();
-        if(savedMode=="dark"){
+    if(savedMode=="dark"){
             body.classList.add("dark");
             modeIcon.src = "sun2.png";
         }
-        else{
-            body.classList.remove("dark");
-            modeIcon.src= "moon2.png";
-        }
+       
+    if(saved){
+        goals=JSON.parse(saved);
+        rendergoals();
         renderProgress();
         
     }
+    updateDailyQuote();
+    const containers = document.querySelectorAll(".goallist ul, .progress-item-list, .quote");
+    containers.forEach(el => el.classList.add("loaded"));
 
 })
 async function updateDailyQuote() {

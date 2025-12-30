@@ -13,8 +13,8 @@
         
         <header>
             <h2 id="name">STUDY <span>IT</span></h2>
-            <div class="quote" id="daily-quote">Dreams don't work unless you do</div>  
-            <button id="mode"> <img src="moon2.png" alt="mode"></button>   
+            <div class="quote" id="daily-quote"><h4>Dreams don't work unless you do</h4></div>  
+            <button id="mode" title="change the mode"> <img src="moon2.png" alt="mode"></button>   
         </header>
 
         <main>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="timer">
-                <h4 id="timerheading"> Maths</h4>
+                <h4 id="timerheading"> Select a goal</h4>
                 <div class="timercontent">
                     <div class="clock">
                         <p id="changabletime">00:00:00 </p>
@@ -70,6 +70,11 @@
                 </div>
             </div>
         </main>
-        <script src="script.js"></script>
+        <script src="script.js">
+            const savedMode = localStorage.getItem("currMode");
+            if (savedMode === "dark") {
+                document.documentElement.classList.add("dark");
+            }
+        </script>
     </body>
 </html>

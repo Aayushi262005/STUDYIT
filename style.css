@@ -384,3 +384,30 @@ input {
     border: 2px solid var(--accent);
 }
 
+.deletebtn {
+    opacity: 0.3;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.deletebtn:hover {
+    opacity: 1;
+    color: #ff4d4d;
+    transform: scale(1.2);
+}
+.visibletime{
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+.goallist ul, .progress-item-list, .quote {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.loaded {
+    opacity: 1 ;
+}
