@@ -312,34 +312,20 @@ window.addEventListener("load",()=>{
     });
 
 })
-async function updateDailyQuote() {
-    const quote= document.getElementById("daily-quote");
-    const today = new Date().toDateString();
-    const savedQuote= JSON.parse(localStorage.getItem("dailyQuote"));
+const quotes = [
+  "Dreams don't work unless you do",
+  "Consistency beats motivation",
+  "Small steps every day",
+  "Focus on progress, not perfection",
+  "Believe you can, and you're halfway there",
+  "Hard work beats talent when talent doesn't work hard",
+  "It always seems impossible until it's done",
+  "Your attitude, not your aptitude, will determine your altitude",
+  "Work hard in silence, let success make the noise",
+  "The expert in anything was once a beginner"
+];
 
-    if(savedQuote && savedQuote.date===today){
-        quote.innerText=savedQuote.text;
-        return;
-    }
-    const apiUrl = "https://quoteslate.vercel.app/api/quotes/random?maxLength=40";
-    const proxiedUrl = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
-    try{
-        const response = await fetch(proxiedUrl);
-        if(!response.ok) throw new Error("api limit");
-        const data= await response.json();
-        const quoteText= data.quote|| data.text;
-
-        const newQuote={
-            text: quoteText,
-            date:today
-        }
-        localStorage.setItem("dailyQuote",JSON.stringify(newQuote));
-        quote.innerText=quoteText;
-        console.log(localStorage.getItem("text"));
-        
-    }
-    catch(error){
-        quote.innerText="Dreams don't work unless you do";
-
-    }
+function updateDailyQuote() {
+  const quote = document.getElementById("daily-quote");
+  quote.innerText = quotes[Math.floor(Math.random() * quotes.length)];
 }
