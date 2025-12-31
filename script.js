@@ -102,11 +102,11 @@ function rendergoals(){
             goals.splice(index, 1);
 
             if (activeGoalIndex === index) {
-                activeGoalIndex = null;
-                timerHeading.textContent = "Select a goal";
+                resetTimerState();
             } else if (activeGoalIndex > index) {
                 activeGoalIndex--;
             }
+            goals.splice(index,1);
 
             saveToLocal();
             rendergoals();
@@ -117,6 +117,19 @@ function rendergoals(){
     
 
     })
+}
+function resetTimerState() {
+    clearInterval(timer);
+    timer = null;
+    remainingSeconds = 0;
+    isBeeping = false;
+    beep.pause();
+    beep.currentTime = 0;
+    activeGoalIndex = null;
+    timerHeading.textContent = "Select a goal";
+    time.innerText = "00:00:00";
+    stopBtn.textContent = "Start";
+    toggleFocusMode(false);
 }
 
 stopBtn.addEventListener("click",()=>{
