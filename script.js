@@ -241,6 +241,11 @@ function renderProgress() {
         `;
 
         progressList.append(item);
+        if(percentage==100 ){
+            item.style.pointerEvents="none";
+            item.style.opacity="0.6"
+
+        }
     });
 
     total.textContent = formatClock(currTotal);
@@ -316,11 +321,13 @@ async function updateDailyQuote() {
         quote.innerText=savedQuote.text;
         return;
     }
+    const apiUrl = "https://quoteslate.vercel.app/api/quotes/random?maxLength=40";
+    const proxiedUrl = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
     try{
-        const response=await fetch ("https://quoteslate.vercel.app/api/quotes/random?maxLength=50");
+        const response = await fetch(proxiedUrl);
         if(!response.ok) throw new Error("api limit");
         const data= await response.json();
-        const quoteText= data.quote;
+        const quoteText= data.quote|| data.text;
 
         const newQuote={
             text: quoteText,
