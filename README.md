@@ -90,8 +90,11 @@ All data is saved automatically in your browser.
 * Cloud sync support
 * Mobile-first UI improvements
 
-# Author
-Build by Aayushi
+## Author
+
+**Aayushi**  
+B.Tech – Computer Science & Engineering (AI) 
+
 
 
 
